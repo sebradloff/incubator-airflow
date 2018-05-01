@@ -155,6 +155,9 @@ class AirflowMesosScheduler(mesos.interface.Scheduler, LoggingMixin):
                 command = mesos_pb2.CommandInfo()
                 command.shell = True
                 command.value = cmd
+                envs = [mesos_pb2.Environment.Variable(name="ENV_VAR",value="TEST_SEB_ENV_VAR_VALUE")]
+                env_vars = mesos_pb2.Environment(variables=envs)
+                command.environment.MergeFrom(env_vars)
                 task.command.MergeFrom(command)
 
                 # If docker image for airflow is specified in config then pull that
