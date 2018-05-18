@@ -284,7 +284,7 @@ class PythonVirtualenvOperator(PythonOperator):
                 if self.use_dill:
                     dill.dump(arg_dict, f)
                 else:
-                    pickle.dump(arg_dict, f)
+                    pickle.dump(arg_dict, f, protocol=2)
 
     def _read_result(self, output_filename):
         if os.stat(output_filename).st_size == 0:
