@@ -732,7 +732,7 @@ class DagPickle(Base):
     the database.
     """
     id = Column(Integer, primary_key=True)
-    pickle = Column(PickleType(pickler=dill))
+    pickle = Column(PickleType(pickler=dill, protocol=2))
     created_dttm = Column(DateTime, default=func.now())
     pickle_hash = Column(Text)
 

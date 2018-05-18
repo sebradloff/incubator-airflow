@@ -28,6 +28,8 @@ from airflow.utils.file import TemporaryDirectory
 
 from textwrap import dedent
 
+pickle.DEFAULT_PROTOCOL = 2
+pickle.HIGHEST_PROTOCOL = 2
 
 class PythonOperator(BaseOperator):
     """
@@ -355,4 +357,3 @@ class PythonVirtualenvOperator(PythonOperator):
                 pickling_library=pickling_library)
 
         self.log.info("Done.")
-

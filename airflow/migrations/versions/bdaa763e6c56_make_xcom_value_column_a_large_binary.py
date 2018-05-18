@@ -31,7 +31,7 @@ import sqlalchemy as sa
 
 
 def upgrade():
-    # There can be data truncation here as LargeBinary can be smaller than the pickle 
+    # There can be data truncation here as LargeBinary can be smaller than the pickle
     # type.
 
     # use batch_alter_table to support SQLite workaround
@@ -42,4 +42,4 @@ def upgrade():
 def downgrade():
     # use batch_alter_table to support SQLite workaround
     with op.batch_alter_table("xcom") as batch_op:
-        batch_op.alter_column('value', type_=sa.PickleType(pickler=dill))
+        batch_op.alter_column('value', type_=sa.PickleType(pickler=dill, protocol=2))

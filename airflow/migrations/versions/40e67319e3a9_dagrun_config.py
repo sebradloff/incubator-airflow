@@ -32,7 +32,7 @@ from sqlalchemy.dialects import mysql
 
 
 def upgrade():
-    op.add_column('dag_run', sa.Column('conf', sa.PickleType(), nullable=True))
+    op.add_column('dag_run', sa.Column('conf', sa.PickleType(protocol=2), nullable=True))
 
 
 def downgrade():

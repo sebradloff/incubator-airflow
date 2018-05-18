@@ -70,7 +70,7 @@ def upgrade():
         op.create_table(
             'dag_pickle',
             sa.Column('id', sa.Integer(), nullable=False),
-            sa.Column('pickle', sa.PickleType(), nullable=True),
+            sa.Column('pickle', sa.PickleType(protocol=2), nullable=True),
             sa.Column('created_dttm', sa.DateTime(), nullable=True),
             sa.Column('pickle_hash', sa.BigInteger(), nullable=True),
             sa.PrimaryKeyConstraint('id')
@@ -242,7 +242,7 @@ def upgrade():
             'xcom',
             sa.Column('id', sa.Integer(), nullable=False),
             sa.Column('key', sa.String(length=512), nullable=True),
-            sa.Column('value', sa.PickleType(), nullable=True),
+            sa.Column('value', sa.PickleType(protocol=2), nullable=True),
             sa.Column(
                 'timestamp',
                 sa.DateTime(),
